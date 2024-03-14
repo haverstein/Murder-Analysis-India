@@ -45,3 +45,8 @@ cat("The fitted trend line model is:\n")
 print(paste("murders =",coefficients(model)[1],
             " + ",coefficients(model)[2],"*exp(-years)"))
 model
+
+## Spatial Analysis
+india_sf = st_read("C:/Users/Admin/Desktop/Notes/Sem 6/Project/Data/spatial-files/
+                   India States/")
+
