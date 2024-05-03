@@ -1,5 +1,5 @@
 # Data launch
-murder_data = read.csv(file.choose())
+murder_data = read_excel(file.choose(),col_names = TRUE)
 murder_data = na.omit(murder_data)
 
 # Extracting data
