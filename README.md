@@ -35,7 +35,64 @@ This project looks at the overall murder counts and their trends from 2015-2021.
 
 ## Project Description
 
+This project aims to understand the socio-economic factors influencing murder rates and motives across different regions of India. By analyzing various socio-economic indicators, we seek to build models that can predict murder patterns and identify key factors contributing to different motives behind murders.
 
+### Data Sources
+Crime Data: National Crime Records Bureau (NCRB) reports for murder counts categorized by motives (Love, Loath, Greed).
+Socio-Economic Data: Government databases and reports from 2016-2021, including:
+- Poverty rates
+- Unemployment rates
+- Homeless population
+- Urbanization rates
+- Population density
+- Net State Domestic Product (NSDP) per capita
+- Literacy rates
+- Alcohol consumption rates
+- Sex ratio
+### Research Questions and Hypotheses
+1. Correlation between Socio-Economic Factors and Murder Rates:
+
+- Hypothesis: Higher poverty and unemployment rates are positively correlated with higher murder rates.
+- Hypothesis: Higher urbanization and population density may lead to increased murder rates due to social stress and economic disparities.
+- Hypothesis: Higher literacy rates and NSDP per capita are associated with lower murder rates.
+2. Motives for Murder:
+
+- Hypothesis: Different socio-economic factors influence the motives behind murders (e.g., love-related murders may correlate with higher urbanization and lower literacy rates).
+### Data Analysis and Visualization Techniques
+#### Exploratory Data Analysis (EDA):
+
+- Descriptive statistics and density plots to understand the distribution of socio-economic factors.
+- Heatmaps to visualize the correlation between variables and murder motives.
+#### Spatial Clustering:
+
+K-Means clustering to group states based on socio-economic factors and murder rates.
+Visualization of clusters on the Indian map to identify regional patterns.
+
+#### Correlation Analysis:
+
+Spearman correlation to determine the strength and direction of relationships between socio-economic factors and murder rates/motives.
+Heatmap of p-values to identify statistically significant correlations.
+
+#### Regression Modeling:
+
+Linear regression models to predict murder rates based on socio-economic factors.
+Multivariate regression to assess the combined effect of multiple factors on murder motives.
+
+### Challenges and Blockers
+
+- #### Data Quality and Availability:
+
+Inconsistent data across different years and regions.
+Missing data for certain states or variables.
+- #### Multicollinearity:
+
+High correlation between some socio-economic factors (e.g., poverty and unemployment) can complicate regression analysis.
+- #### Regional Variations:
+
+Socio-economic and cultural differences across regions require careful interpretation of results and may necessitate region-specific models.
+- #### Complexity of Murder Motives:
+
+Murder motives are influenced by a complex interplay of socio-economic, psychological, and cultural factors, making it challenging to build comprehensive models.
 
 
 ## Needs of this project
