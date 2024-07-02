@@ -1,42 +1,51 @@
-# Crime Analysis in India (2015-2021)
 
-This project presents a comprehensive analysis of crime dynamics in India, 
-integrating data from multiple sources and employing advanced analytical 
-techniques to uncover intricate patterns and insights. Over the past decade, 
-crimes have exhibited complex temporal and spatial variations, influenced by a 
-myriad of socio-economic factors. 
+# Murder Analysis of India (2015-2021)
 
-## Introduction
+This is the project for my bachelors final year dissertation. This project provides a deep dive into the murder patterns in India from 2015-2021.
 
 
-Crime is as old as human history itself. It has evolved into different forms, saw variations in it through cultural, temporal, and socio-economic changes. Through all this, the action of crime still persists in our society. Among all the crimes human commits, the crime of murder seems to be the most arrogant. Life is a precious gift to behold, regardless of its struggles, so there is little reasoning behind murder. It is a devastating act that not only ends a life but also leaves a lasting impact on families, communities, and society as a whole. Understanding the motives behind murders is crucial in addressing this serious issue and working towards creating safer communities.
 
-### Analysis on the murder counts in years (2015-2021)
+## Acknowledgements
 
-We have the data of total murder counts of the year 2015-2021, so we look to plot them taking the years in the abscissa and the murder counts in the ordinate axis. We obtain the plot in Fig 1.1
+ - [Paper on Murder Motives](https://www.crimeandjustice.org.uk/sites/crimeandjustice.org.uk/files/09627250608553401.pdf)
+ - [Inequality produes higher crime rates](https://www.nature.com/articles/s41598-020-80897-8)
+ - [Literacy and Violence](https://link.springer.com/article/10.1007/BF01466315)
 
-![](Aspose.Words.e91d200c-ebe0-4df4-97df-e22a3bb3a97d.001.png)
+## Project Intro
 
-*Fig1.1 The time series plot of the murder counts*
+This project looks at the overall murder counts and their trends from 2015-2021. In addition to that it gets deeper into the penetration of murder in the six administrative blocks of India. Moreover it provides a detailed study on the motives of murder throughout the time period and its variations through space. Additionally it takes a brief look at the major socio economic factors affecting murder.
 
-Through a cursory glance we see that the murder counts have seen a sharp decline in the period of 2015-2017 and saw its minimum at 2017. After 2017, the murder counts picked up but at a more humble rate than its previous decline in the former mentioned period. Now, we look to find a trend line to this time series plot.
+#### Methods Used:
 
-**1.2 Fitting a trend line**
+* Descriptive Statistics
+* Inferential Statistics
+* Trend Analysis
+* Linear Regression and Regularization
+* Predictive Modelling
+* Clustering
 
-The most common trend line fitting is the linear one but the graph hints us to model it with a less common trend model but still a famous one. It would be really intuitive to model the trend of the murder counts of the period 2017-2021 with an exponential trend model to be specific the inverse exponential trend model. The trend model fitting of the linear type, the exponential type and the inverse exponential type is provided in the Fig 1.2.1
+#### Technologies:
 
-![](Aspose.Words.e91d200c-ebe0-4df4-97df-e22a3bb3a97d.002.png)
+- R
+- Python
+- Tableau
 
-*Fig 1.2.1 Fitting the linear, exponential and the inverse exponential trend models*
 
-We see that the linear trend line tries to give a representation of the trend but is not that useful, the exponential doesn’t cut it either but the inverse or negative exponential trend model does a great job at capturing the trend of the time series. Now the fitted model of inverse exponential is provided below:
 
-murder counts= α+βe-years
 
-The estimates of α and β are calculated using the least squares method. The estimates along with the actual fitted equation is given below:
+## Project Description
 
-α = 27580 and β = 1012
 
-So the model becomes,  
-murder counts= 27580+1012\*e-years
+
+
+## Needs of this project
+
+- Data Collection 
+- Exploratory Data Analysis
+- Data Cleaning and Feature Engineering
+- Data Transformation
+- Modelling
+- Reporting and Presentation
+
+
 
