@@ -1,0 +1,2347 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Georgy Meshcheryakov">
+    <title>Factors behind Motives: Report</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/semopy.css" rel="stylesheet">
+    <script src="./js/bootstrap.min.js"></script>
+    <style>nav .nav-link {
+    color: black;
+}
+nav .nav-link:hover {
+    color: grey;
+}
+nav .nav-link.active {
+    color: grey;
+}</style>
+
+
+  </head>
+  <body>
+<br><br>
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-sm-8">
+	<h2 style="display:inline">Report: Factors behind Motives</h2>
+	</div>
+</div>
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-sm-2">
+     <br>
+     <div class="sticky-top">
+      <nav class="nav flex-column" >
+        <a class="p-1 nav-link active" id="model_m" href="#model">Model information</a>
+        <a class="p-1 nav-link" id="estimates_m" href="#estimates">Estimates</a>
+        <a class="p-1 nav-link" id="indices_m" href="#indices">Fit indices</a>
+	<a class="p-1 nav-link" id="matrices_m" href="#matrices">Matrices</a>
+      </nav>
+     </div>
+    </div>
+    <div class="col-sm-9" style="border-left: 1px solid">
+     <br>
+	<a class="anchor" id="model"></a>
+	<h3>Model information</h3>
+		<div class="row">
+		<div class="col-sm-4">Model class:</div><div class="col-sm-2"><span style="background-color: #f6f8fa; font-family: monospace;">Model</span></div>
+		</div>
+		<div class="row">
+		<div class="col-sm-4">Number of samples:</div><div class="col-sm-2">198</div>
+		</div>
+		<div class="row">
+		<div class="col-sm-4">Objective function:</div><div class="col-sm-2">MLW</div>
+		</div>
+		<div class="row">
+		<div class="col-sm-4">Converged:</div><div class="col-sm-2 text-success">Yes</div>
+		</div>
+		<br>
+		Description in <b>semopy</b> syntax:
+		<div class="col-sm-9" style="background-color: #f6f8fa;max-width: 100%;width: 100%;border: 1px solid">
+		<pre style="font-family: monospace">
+# Measurement model
+SES =~ NSDP_per_capita + Below_poverty_line + Unemployment
+PopD =~ Urbanization + Population_Density + Homeless_prop
+SocialWellbeing =~ Literacy + Sex_Ratio
+SubstanceAbuse =~ Alcohol
+
+# Structural model
+Total_Murders ~ SES + PopD + SocialWellbeing + SubstanceAbuse + Year
+Greed ~ SES + PopD + SocialWellbeing + SubstanceAbuse + Year
+Loath ~ SES + PopD + SocialWellbeing + SubstanceAbuse + Year
+Love ~ SES + PopD + SocialWellbeing + SubstanceAbuse + Year
+</pre>
+		</div>
+		<br>
+		<div class="accordion" id="accordion1">
+		<div class="accordion-item">
+	    <h2 class="accordion-header" id="headingOne">
+	      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+		Variables classification
+	      </button>
+	    </h2>
+	    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion1">
+	      <div class="accordion-body">
+		<div class="row"><div class="col-sm-2">all</div><div class="col-sm-6">Year, SubstanceAbuse, Greed, Literacy, Unemployment, SocialWellbeing, Population_Density, Total_Murders, NSDP_per_capita, Loath, Sex_Ratio, PopD, Below_poverty_line, Love, SES, Urbanization, Alcohol, Homeless_prop</div></div><div class="row"><div class="col-sm-2">endogenous</div><div class="col-sm-6">Greed, Below_poverty_line, Literacy, Love, Alcohol, Homeless_prop, Unemployment, Urbanization, Population_Density, Total_Murders, NSDP_per_capita, Loath, Sex_Ratio</div></div><div class="row"><div class="col-sm-2">exogenous</div><div class="col-sm-6">Year, SubstanceAbuse, PopD, SES, SocialWellbeing</div></div><div class="row"><div class="col-sm-2">observed</div><div class="col-sm-6">Alcohol, Below_poverty_line, Greed, Homeless_prop, Literacy, Loath, Love, NSDP_per_capita, Population_Density, Sex_Ratio, Total_Murders, Unemployment, Urbanization, Year</div></div><div class="row"><div class="col-sm-2">latent</div><div class="col-sm-6">SES, SubstanceAbuse, PopD, SocialWellbeing</div></div><div class="row"><div class="col-sm-2">indicator</div><div class="col-sm-6">Below_poverty_line, Literacy, Sex_Ratio, Unemployment, Urbanization, Population_Density, Alcohol, Homeless_prop, NSDP_per_capita</div></div><div class="row"><div class="col-sm-2">output</div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-2">_output</div><div class="col-sm-6">Greed, Below_poverty_line, Literacy, Love, Homeless_prop, NSDP_per_capita, Unemployment, Urbanization, Population_Density, Total_Murders, Alcohol, Loath, Sex_Ratio</div></div><div class="row"><div class="col-sm-2">inner</div><div class="col-sm-6">PopD, SES, SocialWellbeing, SubstanceAbuse, Year</div></div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<br>
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link active" id="plainfig-tab" data-bs-toggle="tab" data-bs-target="#plainfig" type="button" role="tab" aria-controls="plainfig" aria-selected="true">Omit covariances and estimates</button>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="covfig-tab" data-bs-toggle="tab" data-bs-target="#covfig" type="button" role="tab" aria-controls="covfig" aria-selected="false">Omit covariances</button>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="plainparamfig-tab" data-bs-toggle="tab" data-bs-target="#plainparamfig" type="button" role="tab" aria-controls="plainparamfig" aria-selected="false">Omit estimates</button>
+		  </li>
+		<li class="nav-item" role="presentation">
+		    <button class="nav-link" id="covparamfig-tab" data-bs-toggle="tab" data-bs-target="#covparamfig" type="button" role="tab" aria-controls="covparamfig" aria-selected="false">Show estimates and covariances</button>
+		  </li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+		  <div class="tab-pane fade show active" id="plainfig" role="tabpanel" aria-labelledby="plainfig-tab"><img src="./plots/1.png" class="img-fluid" alt="Model figure with covariances and estimates omitted"></div>
+		  <div class="tab-pane fade" id="covfig" role="tabpanel" aria-labelledby="covfig-tab"><img src="./plots/2.png" class="img-fluid" alt="Model figure with covariances omitted"></div>
+		  <div class="tab-pane fade" id="plainparamfig" role="tabpanel" aria-labelledby="plainparamfig-tab"><img src="./plots/3.png" class="img-fluid" alt="Model figure with estimates omitted"></div>
+		 <div class="tab-pane fade" id="covparamfig" role="tabpanel" aria-labelledby="covparamfig-tab"><img src="./plots/4.png" class="img-fluid" alt="Model figure"></div>
+		</div>
+		
+	<a class="anchor" id="estimates"></a>
+	<h3>Estimates</h3>
+	<div style="font-family:monospace">
+	<div class="row"><div class='col-sm-2'></div><div class='col-sm-2'></div><div class='col-sm-1'>Estimate</div><div class='col-sm-1'>P-value</div></div><div class='col-sm-2'>Measurement:</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div><div class="row"><div class='col-sm-2 text-end'>SES =~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>NSDP_per_capita</div><div class='col-sm-1'>1.000</div><div class='col-sm-1'>-</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Below_poverty_line</div><div class='col-sm-1'>-0.818</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Unemployment</div><div class='col-sm-1'>0.012</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Total_Murders</div><div class='col-sm-1'>13.236</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Greed</div><div class='col-sm-1'>-9.209</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Loath</div><div class='col-sm-1'>-8.888</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Love</div><div class='col-sm-1'>-1.988</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'>PopD =~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Urbanization</div><div class='col-sm-1'>1.000</div><div class='col-sm-1'>-</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Population_Density</div><div class='col-sm-1'>16.819</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Homeless_prop</div><div class='col-sm-1'>2.768</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Total_Murders</div><div class='col-sm-1'>-989.468</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Greed</div><div class='col-sm-1'>-595.168</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Loath</div><div class='col-sm-1'>-348.703</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Love</div><div class='col-sm-1'>-180.585</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'>SocialWellbeing =~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Literacy</div><div class='col-sm-1'>1.000</div><div class='col-sm-1'>-</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Sex_Ratio</div><div class='col-sm-1'>-46569.608</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Total_Murders</div><div class='col-sm-1'>-1481.728</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Greed</div><div class='col-sm-1'>-113.319</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Loath</div><div class='col-sm-1'>-2488.068</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Love</div><div class='col-sm-1'>-1613.818</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'>SubstanceAbuse =~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Alcohol</div><div class='col-sm-1'>1.000</div><div class='col-sm-1'>-</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Total_Murders</div><div class='col-sm-1'>-954.288</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Greed</div><div class='col-sm-1'>217.239</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Loath</div><div class='col-sm-1'>200.902</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Love</div><div class='col-sm-1'>24.895</div><div class='col-sm-1'>0.000</div></div><div class='col-sm-2'>Regressions:</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div><div class="row"><div class='col-sm-2 text-end'>Total_Murders ~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Year</div><div class='col-sm-1'>-35.764</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'>Greed ~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Year</div><div class='col-sm-1'>-23.706</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'>Loath ~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Year</div><div class='col-sm-1'>-0.365</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'>Love ~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Year</div><div class='col-sm-1'>-11.692</div><div class='col-sm-1'>0.000</div></div><div class='col-sm-2'>Variances:</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>PopD</div><div class='col-sm-1'>0.029</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>SES</div><div class='col-sm-1'>25447.610</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>SocialWellbeing</div><div class='col-sm-1'>0.000</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>SubstanceAbuse</div><div class='col-sm-1'>14.151</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Alcohol</div><div class='col-sm-1'>16326.673</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Below_poverty_line</div><div class='col-sm-1'>7371.442</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Greed</div><div class='col-sm-1'>94108.724</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Homeless_prop</div><div class='col-sm-1'>0.394</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Literacy</div><div class='col-sm-1'>42.050</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Loath</div><div class='col-sm-1'>87035.037</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Love</div><div class='col-sm-1'>10779.975</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>NSDP_per_capita</div><div class='col-sm-1'>4602.381</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Population_Density</div><div class='col-sm-1'>0.550</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Sex_Ratio</div><div class='col-sm-1'>2322.928</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Total_Murders</div><div class='col-sm-1'>413365.936</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Unemployment</div><div class='col-sm-1'>11.805</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>Urbanization</div><div class='col-sm-1'>0.019</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2'>Covariances:</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'>PopD ~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>SocialWellbeing</div><div class='col-sm-1'>-0.000</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'>SES ~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>PopD</div><div class='col-sm-1'>-2.959</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>SocialWellbeing</div><div class='col-sm-1'>0.048</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>SubstanceAbuse</div><div class='col-sm-1'>606.620</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'>SubstanceAbuse ~</div><div class='col-sm-2'></div><div class='col-sm-1'></div><div class='col-sm-1'></div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>PopD</div><div class='col-sm-1'>-0.068</div><div class='col-sm-1'>0.000</div></div><div class="row"><div class='col-sm-2 text-end'></div><div class='col-sm-2'>SocialWellbeing</div><div class='col-sm-1'>0.001</div><div class='col-sm-1'>0.000</div></div>
+	</div>
+	<br>
+	<div class="accordion" id="accordion3">
+	<div class="accordion-item">
+	    <h2 class="accordion-header" id="headingThree">
+	      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+		semopy tabular output
+	      </button>
+	    </h2>	
+	    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion3">
+	      <div class="accordion-body" style="background-color: #f6f8fa;max-width: 100%;width: 100%">
+		<pre style="font-family: monospace">                  lval  op                rval      Estimate  Std. Err  \
+0      NSDP_per_capita   ~                 SES  1.000000e+00         -   
+1   Below_poverty_line   ~                 SES -8.179246e-01  0.000072   
+2         Unemployment   ~                 SES  1.150441e-02  0.001566   
+3         Urbanization   ~                PopD  1.000000e+00         -   
+4   Population_Density   ~                PopD  1.681853e+01  0.000011   
+5        Homeless_prop   ~                PopD  2.768475e+00  0.000003   
+6             Literacy   ~     SocialWellbeing  1.000000e+00         -   
+7            Sex_Ratio   ~     SocialWellbeing -4.656961e+04       0.0   
+8              Alcohol   ~      SubstanceAbuse  1.000000e+00         -   
+9        Total_Murders   ~                 SES  1.323571e+01  0.000318   
+10       Total_Murders   ~                PopD -9.894676e+02       0.0   
+11       Total_Murders   ~     SocialWellbeing -1.481728e+03       0.0   
+12       Total_Murders   ~      SubstanceAbuse -9.542881e+02  0.000078   
+13       Total_Murders   ~                Year -3.576440e+01  0.002183   
+14               Greed   ~                 SES -9.209191e+00  0.000343   
+15               Greed   ~                PopD -5.951682e+02       0.0   
+16               Greed   ~     SocialWellbeing -1.133191e+02       0.0   
+17               Greed   ~      SubstanceAbuse  2.172395e+02  0.007158   
+18               Greed   ~                Year -2.370632e+01  0.002183   
+19               Loath   ~                 SES -8.887530e+00  0.000343   
+20               Loath   ~                PopD -3.487033e+02       0.0   
+21               Loath   ~     SocialWellbeing -2.488068e+03       0.0   
+22               Loath   ~      SubstanceAbuse  2.009024e+02   0.00751   
+23               Loath   ~                Year -3.653370e-01  0.002183   
+24                Love   ~                 SES -1.987797e+00  0.000352   
+25                Love   ~                PopD -1.805853e+02       0.0   
+26                Love   ~     SocialWellbeing -1.613818e+03       0.0   
+27                Love   ~      SubstanceAbuse  2.489511e+01   0.00389   
+28                Love   ~                Year -1.169161e+01  0.002184   
+29                PopD  ~~                PopD  2.945912e-02  0.003095   
+30                PopD  ~~     SocialWellbeing -1.080895e-04  0.000017   
+31                 SES  ~~                 SES  2.544761e+04       0.0   
+32                 SES  ~~                PopD -2.959263e+00  0.000041   
+33                 SES  ~~     SocialWellbeing  4.763601e-02   0.01275   
+34                 SES  ~~      SubstanceAbuse  6.066200e+02  0.000017   
+35     SocialWellbeing  ~~     SocialWellbeing  5.757686e-07       0.0   
+36      SubstanceAbuse  ~~      SubstanceAbuse  1.415084e+01  0.000026   
+37      SubstanceAbuse  ~~                PopD -6.793124e-02   0.00028   
+38      SubstanceAbuse  ~~     SocialWellbeing  1.126561e-03  0.000304   
+39             Alcohol  ~~             Alcohol  1.632667e+04       0.0   
+40  Below_poverty_line  ~~  Below_poverty_line  7.371442e+03       0.0   
+41               Greed  ~~               Greed  9.410872e+04  0.000017   
+42       Homeless_prop  ~~       Homeless_prop  3.935887e-01  0.000001   
+43            Literacy  ~~            Literacy  4.204958e+01       0.0   
+44               Loath  ~~               Loath  8.703504e+04  0.000017   
+45                Love  ~~                Love  1.077998e+04  0.000009   
+46     NSDP_per_capita  ~~     NSDP_per_capita  4.602381e+03       0.0   
+47  Population_Density  ~~  Population_Density  5.498872e-01  0.000014   
+48           Sex_Ratio  ~~           Sex_Ratio  2.322928e+03       0.0   
+49       Total_Murders  ~~       Total_Murders  4.133659e+05       0.0   
+50        Unemployment  ~~        Unemployment  1.180509e+01       0.0   
+51        Urbanization  ~~        Urbanization  1.922695e-02  0.002105   
+
+                  z-value   p-value  
+0                       -         -  
+1           -11311.667503       0.0  
+2                7.348388       0.0  
+3                       -         -  
+4          1479766.864697       0.0  
+5          1060315.373529       0.0  
+6                       -         -  
+7   -3561333015342.140625       0.0  
+8                       -         -  
+9            41588.042154       0.0  
+10    -25250595568.473671       0.0  
+11  -2331789866177.019043       0.0  
+12       -12303419.629337       0.0  
+13          -16379.840583       0.0  
+14          -26851.115004       0.0  
+15    -15820217842.992273       0.0  
+16   -131719062499.650513       0.0  
+17           30347.334638       0.0  
+18           -10857.70416       0.0  
+19           -25896.99632       0.0  
+20     -9353266723.901529       0.0  
+21  -2856451928672.967773       0.0  
+22           26749.557267       0.0  
+23            -167.333929       0.0  
+24           -5643.607631       0.0  
+25     -5559062100.775599       0.0  
+26  -3031702422429.888184       0.0  
+27            6400.396834       0.0  
+28           -5352.238708       0.0  
+29               9.519039       0.0  
+30              -6.258605       0.0  
+31     58033014040.759003       0.0  
+32          -71660.946847       0.0  
+33               3.736146  0.000187  
+34        34973814.846083       0.0  
+35               3.521573  0.000429  
+36          553553.262682       0.0  
+37            -242.700459       0.0  
+38               3.706603   0.00021  
+39  31955693832229.140625       0.0  
+40  18460969446841.597656       0.0  
+41      5694795006.285777       0.0  
+42          494617.229969       0.0  
+43  41925729834307.898438       0.0  
+44      5019968209.645136       0.0  
+45      1199791986.822563       0.0  
+46   3663227842485.862305       0.0  
+47           39439.029038       0.0  
+48   1106038525806.148926       0.0  
+49   2300947803130.797363       0.0  
+50       209255364.604519       0.0  
+51               9.134756       0.0  </pre>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<br>
+	<div class="accordion" id="accordion2">
+	<div class="accordion-item">
+	    <h2 class="accordion-header" id="headingTwo">
+	      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+		Optimizer report
+	      </button>
+	    </h2>	
+	    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion2">
+	      <div class="accordion-body" style="background-color: #f6f8fa;max-width: 100%;width: 100%">
+		<pre style="font-family: monospace">Name of objective: MLW
+Optimization method: SLSQP
+Optimization successful.
+Optimization terminated successfully
+Objective value: 26.903
+Number of iterations: 1504
+Params: -0.818 0.012 16.819 2.768 -46569.608 13.236 -989.468 -1481.728 -954.288 -35.764 -9.209 -595.168 -113.319 217.239 -23.706 -8.888 -348.703 -2488.068 200.902 -0.365 -1.988 -180.585 -1613.818 24.895 -11.692 16326.673 7371.442 94108.724 0.394 42.050 87035.037 10779.975 4602.381 0.029 -0.000 0.550 25447.610 -2.959 0.048 606.620 2322.928 0.000 14.151 -0.068 0.001 413365.936 11.805 0.019</pre>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<a class="anchor" id="indices"></a>
+	<h3>Fit indices</h3>
+	<table class="table"><thead><tr><th scope='col'>DoF</th><th scope='col'>DoF Baseline</th><th scope='col'>chi2</th><th scope='col'>chi2 p-value</th><th scope='col'>chi2 Baseline</th></tr></thead><tbody><tr><td>57.000</td><td>92.000</td><td>5326.767</td><td>0.000</td><td>8570.704</td></tr></tbody></table><table class="table"><thead><tr><th scope='col'>CFI</th><th scope='col'>GFI</th><th scope='col'>AGFI</th><th scope='col'>NFI</th><th scope='col'>TLI</th></tr></thead><tbody><tr><td>0.378</td><td>0.378</td><td>-0.003</td><td>0.378</td><td>-0.003</td></tr></tbody></table><table class="table"><thead><tr><th scope='col'>RMSEA</th><th scope='col'>AIC</th><th scope='col'>BIC</th><th scope='col'>LogLik</th></tr></thead><tbody><tr><td>0.685</td><td>42.194</td><td>200.031</td><td>26.903</td></tr></tbody></table>
+	<a class="anchor" id="matrices"></a>
+	<h3>Matrices</h3>
+ 	<center><h4>Covariance matrix</h4></center>
+<ul class="nav nav-tabs" id="cov" role="tablist"><li class="nav-item" role="presentation">
+<button class="nav-link active" id="sample-tab" data-bs-toggle="tab" data-bs-target="#sample"
+type="button" role="tab" aria-controls="sample" aria-selected="true">Sample</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="modelimplied-tab" data-bs-toggle="tab" data-bs-target="#modelimplied"
+type="button" role="tab" aria-controls="modelimplied" aria-selected="false">Model-implied</button>
+</li></ul><div class="tab-content" id="covContent"><div class="tab-pane fade show active" id="sample" role="tabpanel" aria-labelledby="sample-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>Alcohol</th>
+      <th>Below_poverty_line</th>
+      <th>Greed</th>
+      <th>Homeless_prop</th>
+      <th>Literacy</th>
+      <th>Loath</th>
+      <th>Love</th>
+      <th>NSDP_per_capita</th>
+      <th>Population_Density</th>
+      <th>Sex_Ratio</th>
+      <th>Total_Murders</th>
+      <th>Unemployment</th>
+      <th>Urbanization</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alcohol</th>
+      <td>68.05</td>
+      <td>-122.38</td>
+      <td>-197.96</td>
+      <td>-0.71</td>
+      <td>-10.56</td>
+      <td>-259.34</td>
+      <td>-187.53</td>
+      <td>68.47</td>
+      <td>-0.19</td>
+      <td>66.88</td>
+      <td>-644.83</td>
+      <td>9.21</td>
+      <td>-0.18</td>
+      <td>-0.00</td>
+    </tr>
+    <tr>
+      <th>Below_poverty_line</th>
+      <td>-122.38</td>
+      <td>14651.61</td>
+      <td>22376.71</td>
+      <td>3.64</td>
+      <td>-392.18</td>
+      <td>21679.11</td>
+      <td>7987.11</td>
+      <td>-3628.71</td>
+      <td>-33.45</td>
+      <td>755.48</td>
+      <td>52042.92</td>
+      <td>-115.63</td>
+      <td>-8.84</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Greed</th>
+      <td>-197.96</td>
+      <td>22376.71</td>
+      <td>188226.97</td>
+      <td>33.66</td>
+      <td>-762.19</td>
+      <td>128347.05</td>
+      <td>43653.92</td>
+      <td>-10771.26</td>
+      <td>-114.81</td>
+      <td>1329.54</td>
+      <td>360227.94</td>
+      <td>-222.65</td>
+      <td>-22.10</td>
+      <td>-61.10</td>
+    </tr>
+    <tr>
+      <th>Homeless_prop</th>
+      <td>-0.71</td>
+      <td>3.64</td>
+      <td>33.66</td>
+      <td>0.59</td>
+      <td>-0.86</td>
+      <td>37.40</td>
+      <td>24.95</td>
+      <td>-6.36</td>
+      <td>1.17</td>
+      <td>20.23</td>
+      <td>96.01</td>
+      <td>-0.24</td>
+      <td>0.08</td>
+      <td>-0.04</td>
+    </tr>
+    <tr>
+      <th>Literacy</th>
+      <td>-10.56</td>
+      <td>-392.18</td>
+      <td>-762.19</td>
+      <td>-0.86</td>
+      <td>42.02</td>
+      <td>-501.16</td>
+      <td>-203.25</td>
+      <td>251.06</td>
+      <td>2.71</td>
+      <td>-64.21</td>
+      <td>-1466.60</td>
+      <td>7.17</td>
+      <td>0.69</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Loath</th>
+      <td>-259.34</td>
+      <td>21679.11</td>
+      <td>128347.05</td>
+      <td>37.40</td>
+      <td>-501.16</td>
+      <td>174099.89</td>
+      <td>49339.03</td>
+      <td>-12066.89</td>
+      <td>-116.49</td>
+      <td>1643.21</td>
+      <td>351785.97</td>
+      <td>-287.48</td>
+      <td>-15.02</td>
+      <td>7.57</td>
+    </tr>
+    <tr>
+      <th>Love</th>
+      <td>-187.53</td>
+      <td>7987.11</td>
+      <td>43653.92</td>
+      <td>24.95</td>
+      <td>-203.25</td>
+      <td>49339.03</td>
+      <td>21718.32</td>
+      <td>-3851.66</td>
+      <td>-45.06</td>
+      <td>838.45</td>
+      <td>114711.27</td>
+      <td>-102.92</td>
+      <td>-4.23</td>
+      <td>-31.30</td>
+    </tr>
+    <tr>
+      <th>NSDP_per_capita</th>
+      <td>68.47</td>
+      <td>-3628.71</td>
+      <td>-10771.26</td>
+      <td>-6.36</td>
+      <td>251.06</td>
+      <td>-12066.89</td>
+      <td>-3851.66</td>
+      <td>9024.06</td>
+      <td>23.49</td>
+      <td>1571.42</td>
+      <td>-26689.81</td>
+      <td>65.78</td>
+      <td>6.34</td>
+      <td>1.95</td>
+    </tr>
+    <tr>
+      <th>Population_Density</th>
+      <td>-0.19</td>
+      <td>-33.45</td>
+      <td>-114.81</td>
+      <td>1.17</td>
+      <td>2.71</td>
+      <td>-116.49</td>
+      <td>-45.06</td>
+      <td>23.49</td>
+      <td>7.85</td>
+      <td>65.07</td>
+      <td>-276.36</td>
+      <td>1.06</td>
+      <td>0.44</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>Sex_Ratio</th>
+      <td>66.88</td>
+      <td>755.48</td>
+      <td>1329.54</td>
+      <td>20.23</td>
+      <td>-64.21</td>
+      <td>1643.21</td>
+      <td>838.45</td>
+      <td>1571.42</td>
+      <td>65.07</td>
+      <td>3162.68</td>
+      <td>3811.20</td>
+      <td>4.17</td>
+      <td>1.92</td>
+      <td>-2.39</td>
+    </tr>
+    <tr>
+      <th>Total_Murders</th>
+      <td>-644.83</td>
+      <td>52042.92</td>
+      <td>360227.94</td>
+      <td>96.01</td>
+      <td>-1466.60</td>
+      <td>351785.97</td>
+      <td>114711.27</td>
+      <td>-26689.81</td>
+      <td>-276.36</td>
+      <td>3811.20</td>
+      <td>826725.18</td>
+      <td>-613.04</td>
+      <td>-41.35</td>
+      <td>-84.82</td>
+    </tr>
+    <tr>
+      <th>Unemployment</th>
+      <td>9.21</td>
+      <td>-115.63</td>
+      <td>-222.65</td>
+      <td>-0.24</td>
+      <td>7.17</td>
+      <td>-287.48</td>
+      <td>-102.92</td>
+      <td>65.78</td>
+      <td>1.06</td>
+      <td>4.17</td>
+      <td>-613.04</td>
+      <td>12.75</td>
+      <td>0.20</td>
+      <td>-1.29</td>
+    </tr>
+    <tr>
+      <th>Urbanization</th>
+      <td>-0.18</td>
+      <td>-8.84</td>
+      <td>-22.10</td>
+      <td>0.08</td>
+      <td>0.69</td>
+      <td>-15.02</td>
+      <td>-4.23</td>
+      <td>6.34</td>
+      <td>0.44</td>
+      <td>1.92</td>
+      <td>-41.35</td>
+      <td>0.20</td>
+      <td>0.04</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>-0.00</td>
+      <td>0.00</td>
+      <td>-61.10</td>
+      <td>-0.04</td>
+      <td>0.00</td>
+      <td>7.57</td>
+      <td>-31.30</td>
+      <td>1.95</td>
+      <td>0.05</td>
+      <td>-2.39</td>
+      <td>-84.82</td>
+      <td>-1.29</td>
+      <td>0.01</td>
+      <td>2.92</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="modelimplied" role="tabpanel" aria-labelledby="modelimplied-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>Alcohol</th>
+      <th>Below_poverty_line</th>
+      <th>Greed</th>
+      <th>Homeless_prop</th>
+      <th>Literacy</th>
+      <th>Loath</th>
+      <th>Love</th>
+      <th>NSDP_per_capita</th>
+      <th>Population_Density</th>
+      <th>Sex_Ratio</th>
+      <th>Total_Murders</th>
+      <th>Unemployment</th>
+      <th>Urbanization</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alcohol</th>
+      <td>16340.82</td>
+      <td>-496.17</td>
+      <td>-2472.06</td>
+      <td>-0.19</td>
+      <td>0.00</td>
+      <td>-2527.53</td>
+      <td>-843.10</td>
+      <td>606.62</td>
+      <td>-1.14</td>
+      <td>-52.46</td>
+      <td>-5409.39</td>
+      <td>6.98</td>
+      <td>-0.07</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Below_poverty_line</th>
+      <td>-496.17</td>
+      <td>24395.91</td>
+      <td>82458.43</td>
+      <td>6.70</td>
+      <td>-0.04</td>
+      <td>84558.32</td>
+      <td>28648.05</td>
+      <td>-20814.22</td>
+      <td>40.71</td>
+      <td>1814.48</td>
+      <td>195660.36</td>
+      <td>-239.46</td>
+      <td>2.42</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Greed</th>
+      <td>-2472.06</td>
+      <td>82458.43</td>
+      <td>490143.16</td>
+      <td>-13.91</td>
+      <td>-0.13</td>
+      <td>401447.91</td>
+      <td>140781.45</td>
+      <td>-100814.22</td>
+      <td>-84.53</td>
+      <td>6039.58</td>
+      <td>1032343.48</td>
+      <td>-1159.81</td>
+      <td>-5.03</td>
+      <td>-69.14</td>
+    </tr>
+    <tr>
+      <th>Homeless_prop</th>
+      <td>-0.19</td>
+      <td>6.70</td>
+      <td>-13.91</td>
+      <td>0.62</td>
+      <td>-0.00</td>
+      <td>7.33</td>
+      <td>-2.64</td>
+      <td>-8.19</td>
+      <td>1.37</td>
+      <td>13.94</td>
+      <td>-9.22</td>
+      <td>-0.09</td>
+      <td>0.08</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Literacy</th>
+      <td>0.00</td>
+      <td>-0.04</td>
+      <td>-0.13</td>
+      <td>-0.00</td>
+      <td>42.05</td>
+      <td>-0.16</td>
+      <td>-0.05</td>
+      <td>0.05</td>
+      <td>-0.00</td>
+      <td>-0.03</td>
+      <td>-0.34</td>
+      <td>0.00</td>
+      <td>-0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Loath</th>
+      <td>-2527.53</td>
+      <td>84558.32</td>
+      <td>401447.91</td>
+      <td>7.33</td>
+      <td>-0.16</td>
+      <td>497531.42</td>
+      <td>142371.96</td>
+      <td>-103381.57</td>
+      <td>44.56</td>
+      <td>7487.41</td>
+      <td>1041318.64</td>
+      <td>-1189.34</td>
+      <td>2.65</td>
+      <td>-1.07</td>
+    </tr>
+    <tr>
+      <th>Love</th>
+      <td>-843.10</td>
+      <td>28648.05</td>
+      <td>140781.45</td>
+      <td>-2.64</td>
+      <td>-0.05</td>
+      <td>142371.96</td>
+      <td>60062.62</td>
+      <td>-35025.30</td>
+      <td>-16.05</td>
+      <td>2237.89</td>
+      <td>343212.24</td>
+      <td>-402.95</td>
+      <td>-0.95</td>
+      <td>-34.10</td>
+    </tr>
+    <tr>
+      <th>NSDP_per_capita</th>
+      <td>606.62</td>
+      <td>-20814.22</td>
+      <td>-100814.22</td>
+      <td>-8.19</td>
+      <td>0.05</td>
+      <td>-103381.57</td>
+      <td>-35025.30</td>
+      <td>30049.99</td>
+      <td>-49.77</td>
+      <td>-2218.39</td>
+      <td>-239215.66</td>
+      <td>292.76</td>
+      <td>-2.96</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Population_Density</th>
+      <td>-1.14</td>
+      <td>40.71</td>
+      <td>-84.53</td>
+      <td>1.37</td>
+      <td>-0.00</td>
+      <td>44.56</td>
+      <td>-16.05</td>
+      <td>-49.77</td>
+      <td>8.88</td>
+      <td>84.66</td>
+      <td>-56.02</td>
+      <td>-0.57</td>
+      <td>0.50</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Sex_Ratio</th>
+      <td>-52.46</td>
+      <td>1814.48</td>
+      <td>6039.58</td>
+      <td>13.94</td>
+      <td>-0.03</td>
+      <td>7487.41</td>
+      <td>2237.89</td>
+      <td>-2218.39</td>
+      <td>84.66</td>
+      <td>3571.61</td>
+      <td>15762.41</td>
+      <td>-25.52</td>
+      <td>5.03</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Total_Murders</th>
+      <td>-5409.39</td>
+      <td>195660.36</td>
+      <td>1032343.48</td>
+      <td>-9.22</td>
+      <td>-0.34</td>
+      <td>1041318.64</td>
+      <td>343212.24</td>
+      <td>-239215.66</td>
+      <td>-56.02</td>
+      <td>15762.41</td>
+      <td>2416820.42</td>
+      <td>-2752.03</td>
+      <td>-3.33</td>
+      <td>-104.31</td>
+    </tr>
+    <tr>
+      <th>Unemployment</th>
+      <td>6.98</td>
+      <td>-239.46</td>
+      <td>-1159.81</td>
+      <td>-0.09</td>
+      <td>0.00</td>
+      <td>-1189.34</td>
+      <td>-402.95</td>
+      <td>292.76</td>
+      <td>-0.57</td>
+      <td>-25.52</td>
+      <td>-2752.03</td>
+      <td>15.17</td>
+      <td>-0.03</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Urbanization</th>
+      <td>-0.07</td>
+      <td>2.42</td>
+      <td>-5.03</td>
+      <td>0.08</td>
+      <td>-0.00</td>
+      <td>2.65</td>
+      <td>-0.95</td>
+      <td>-2.96</td>
+      <td>0.50</td>
+      <td>5.03</td>
+      <td>-3.33</td>
+      <td>-0.03</td>
+      <td>0.05</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>-69.14</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>-1.07</td>
+      <td>-34.10</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>-104.31</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>2.92</td>
+    </tr>
+  </tbody>
+</table></div></div><br><center><h4>Model matrices</h4></center><ul class="nav nav-tabs" id="modelmatrices" role="tablist"><li class="nav-item" role="presentation">
+<button class="nav-link active" id="mxBeta-tab" data-bs-toggle="tab" data-bs-target="#mxBeta"
+type="button" role="tab" aria-controls="mxBeta" aria-selected="true">Beta</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="mxLambda-tab" data-bs-toggle="tab" data-bs-target="#mxLambda"
+type="button" role="tab" aria-controls="mxLambda" aria-selected="false">Lambda</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="mxPsi-tab" data-bs-toggle="tab" data-bs-target="#mxPsi"
+type="button" role="tab" aria-controls="mxPsi" aria-selected="false">Psi</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="mxTheta-tab" data-bs-toggle="tab" data-bs-target="#mxTheta"
+type="button" role="tab" aria-controls="mxTheta" aria-selected="false">Theta</button>
+</li></ul><div class="tab-content" id="covContent"><div class="tab-pane fade show active" id="mxBeta" role="tabpanel" aria-labelledby="mxBeta-tab"><ul class="nav nav-tabs" id="Betasub" role="tablist"><li class="nav-item" role="presentation">
+<button class="nav-link active" id="BetaEstimates-tab" data-bs-toggle="tab" data-bs-target="#BetaEstimates"
+type="button" role="tab" aria-controls="BetaEstimates" aria-selected="true">Estimates</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="BetaStart-tab" data-bs-toggle="tab" data-bs-target="#BetaStart"
+type="button" role="tab" aria-controls="BetaStart" aria-selected="false">Start</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="BetaNames-tab" data-bs-toggle="tab" data-bs-target="#BetaNames"
+type="button" role="tab" aria-controls="BetaNames" aria-selected="false">Names</button>
+</li></ul><div class="tab-content" id="Factors behind MotivessubContent"><div class="tab-pane fade show active" id="BetaEstimates" role="tabpanel" aria-labelledby="BetaEstimates-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PopD</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SES</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SocialWellbeing</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SubstanceAbuse</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="BetaStart" role="tabpanel" aria-labelledby="BetaStart-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PopD</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SES</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SocialWellbeing</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SubstanceAbuse</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="BetaNames" role="tabpanel" aria-labelledby="BetaNames-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PopD</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SES</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SocialWellbeing</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SubstanceAbuse</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table></div></div></div><div class="tab-pane fade " id="mxLambda" role="tabpanel" aria-labelledby="mxLambda-tab"><ul class="nav nav-tabs" id="Lambdasub" role="tablist"><li class="nav-item" role="presentation">
+<button class="nav-link active" id="LambdaEstimates-tab" data-bs-toggle="tab" data-bs-target="#LambdaEstimates"
+type="button" role="tab" aria-controls="LambdaEstimates" aria-selected="true">Estimates</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="LambdaStart-tab" data-bs-toggle="tab" data-bs-target="#LambdaStart"
+type="button" role="tab" aria-controls="LambdaStart" aria-selected="false">Start</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="LambdaNames-tab" data-bs-toggle="tab" data-bs-target="#LambdaNames"
+type="button" role="tab" aria-controls="LambdaNames" aria-selected="false">Names</button>
+</li></ul><div class="tab-content" id="Factors behind MotivessubContent"><div class="tab-pane fade show active" id="LambdaEstimates" role="tabpanel" aria-labelledby="LambdaEstimates-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alcohol</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Below_poverty_line</th>
+      <td>0.00</td>
+      <td>-0.82</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Greed</th>
+      <td>-595.17</td>
+      <td>-9.21</td>
+      <td>-113.32</td>
+      <td>217.24</td>
+      <td>-23.71</td>
+    </tr>
+    <tr>
+      <th>Homeless_prop</th>
+      <td>2.77</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Literacy</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Loath</th>
+      <td>-348.70</td>
+      <td>-8.89</td>
+      <td>-2488.07</td>
+      <td>200.90</td>
+      <td>-0.37</td>
+    </tr>
+    <tr>
+      <th>Love</th>
+      <td>-180.59</td>
+      <td>-1.99</td>
+      <td>-1613.82</td>
+      <td>24.90</td>
+      <td>-11.69</td>
+    </tr>
+    <tr>
+      <th>NSDP_per_capita</th>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Population_Density</th>
+      <td>16.82</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Sex_Ratio</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>-46569.61</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Total_Murders</th>
+      <td>-989.47</td>
+      <td>13.24</td>
+      <td>-1481.73</td>
+      <td>-954.29</td>
+      <td>-35.76</td>
+    </tr>
+    <tr>
+      <th>Unemployment</th>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Urbanization</th>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="LambdaStart" role="tabpanel" aria-labelledby="LambdaStart-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alcohol</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Below_poverty_line</th>
+      <td>0.00</td>
+      <td>-0.40</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Greed</th>
+      <td>-491.89</td>
+      <td>-1.19</td>
+      <td>-18.14</td>
+      <td>-2.91</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Homeless_prop</th>
+      <td>1.83</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Literacy</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Loath</th>
+      <td>-334.21</td>
+      <td>-1.34</td>
+      <td>-11.93</td>
+      <td>-3.81</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Love</th>
+      <td>-94.17</td>
+      <td>-0.43</td>
+      <td>-4.84</td>
+      <td>-2.76</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>NSDP_per_capita</th>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Population_Density</th>
+      <td>9.72</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Sex_Ratio</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>-1.53</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Total_Murders</th>
+      <td>-920.28</td>
+      <td>-2.96</td>
+      <td>-34.90</td>
+      <td>-9.48</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Unemployment</th>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Urbanization</th>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="LambdaNames" role="tabpanel" aria-labelledby="LambdaNames-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alcohol</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_b9</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Below_poverty_line</th>
+      <td>0.00</td>
+      <td>_b2</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Greed</th>
+      <td>_b16</td>
+      <td>_b15</td>
+      <td>_b17</td>
+      <td>_b18</td>
+      <td>_b19</td>
+    </tr>
+    <tr>
+      <th>Homeless_prop</th>
+      <td>_b6</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Literacy</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_b7</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Loath</th>
+      <td>_b21</td>
+      <td>_b20</td>
+      <td>_b22</td>
+      <td>_b23</td>
+      <td>_b24</td>
+    </tr>
+    <tr>
+      <th>Love</th>
+      <td>_b26</td>
+      <td>_b25</td>
+      <td>_b27</td>
+      <td>_b28</td>
+      <td>_b29</td>
+    </tr>
+    <tr>
+      <th>NSDP_per_capita</th>
+      <td>0.00</td>
+      <td>_b1</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Population_Density</th>
+      <td>_b5</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Sex_Ratio</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_b8</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Total_Murders</th>
+      <td>_b11</td>
+      <td>_b10</td>
+      <td>_b12</td>
+      <td>_b13</td>
+      <td>_b14</td>
+    </tr>
+    <tr>
+      <th>Unemployment</th>
+      <td>0.00</td>
+      <td>_b3</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Urbanization</th>
+      <td>_b4</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table></div></div></div><div class="tab-pane fade " id="mxPsi" role="tabpanel" aria-labelledby="mxPsi-tab"><ul class="nav nav-tabs" id="Psisub" role="tablist"><li class="nav-item" role="presentation">
+<button class="nav-link active" id="PsiEstimates-tab" data-bs-toggle="tab" data-bs-target="#PsiEstimates"
+type="button" role="tab" aria-controls="PsiEstimates" aria-selected="true">Estimates</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="PsiStart-tab" data-bs-toggle="tab" data-bs-target="#PsiStart"
+type="button" role="tab" aria-controls="PsiStart" aria-selected="false">Start</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="PsiNames-tab" data-bs-toggle="tab" data-bs-target="#PsiNames"
+type="button" role="tab" aria-controls="PsiNames" aria-selected="false">Names</button>
+</li></ul><div class="tab-content" id="Factors behind MotivessubContent"><div class="tab-pane fade show active" id="PsiEstimates" role="tabpanel" aria-labelledby="PsiEstimates-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PopD</th>
+      <td>0.03</td>
+      <td>-2.96</td>
+      <td>-0.00</td>
+      <td>-0.07</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SES</th>
+      <td>-2.96</td>
+      <td>25447.61</td>
+      <td>0.05</td>
+      <td>606.62</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SocialWellbeing</th>
+      <td>-0.00</td>
+      <td>0.05</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SubstanceAbuse</th>
+      <td>-0.07</td>
+      <td>606.62</td>
+      <td>0.00</td>
+      <td>14.15</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>2.92</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="PsiStart" role="tabpanel" aria-labelledby="PsiStart-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PopD</th>
+      <td>0.05</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SES</th>
+      <td>0.00</td>
+      <td>0.05</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SocialWellbeing</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.05</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SubstanceAbuse</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.05</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>2.92</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="PsiNames" role="tabpanel" aria-labelledby="PsiNames-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>PopD</th>
+      <th>SES</th>
+      <th>SocialWellbeing</th>
+      <th>SubstanceAbuse</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PopD</th>
+      <td>_c10</td>
+      <td>_c14</td>
+      <td>_c11</td>
+      <td>_c20</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SES</th>
+      <td>_c14</td>
+      <td>_c13</td>
+      <td>_c15</td>
+      <td>_c16</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SocialWellbeing</th>
+      <td>_c11</td>
+      <td>_c15</td>
+      <td>_c18</td>
+      <td>_c21</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SubstanceAbuse</th>
+      <td>_c20</td>
+      <td>_c16</td>
+      <td>_c21</td>
+      <td>_c19</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c1</td>
+    </tr>
+  </tbody>
+</table></div></div></div><div class="tab-pane fade " id="mxTheta" role="tabpanel" aria-labelledby="mxTheta-tab"><ul class="nav nav-tabs" id="Thetasub" role="tablist"><li class="nav-item" role="presentation">
+<button class="nav-link active" id="ThetaEstimates-tab" data-bs-toggle="tab" data-bs-target="#ThetaEstimates"
+type="button" role="tab" aria-controls="ThetaEstimates" aria-selected="true">Estimates</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="ThetaStart-tab" data-bs-toggle="tab" data-bs-target="#ThetaStart"
+type="button" role="tab" aria-controls="ThetaStart" aria-selected="false">Start</button>
+</li><li class="nav-item" role="presentation">
+<button class="nav-link " id="ThetaNames-tab" data-bs-toggle="tab" data-bs-target="#ThetaNames"
+type="button" role="tab" aria-controls="ThetaNames" aria-selected="false">Names</button>
+</li></ul><div class="tab-content" id="Factors behind MotivessubContent"><div class="tab-pane fade show active" id="ThetaEstimates" role="tabpanel" aria-labelledby="ThetaEstimates-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>Alcohol</th>
+      <th>Below_poverty_line</th>
+      <th>Greed</th>
+      <th>Homeless_prop</th>
+      <th>Literacy</th>
+      <th>Loath</th>
+      <th>Love</th>
+      <th>NSDP_per_capita</th>
+      <th>Population_Density</th>
+      <th>Sex_Ratio</th>
+      <th>Total_Murders</th>
+      <th>Unemployment</th>
+      <th>Urbanization</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alcohol</th>
+      <td>16326.67</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Below_poverty_line</th>
+      <td>0.00</td>
+      <td>7371.44</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Greed</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>94108.72</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Homeless_prop</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.39</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Literacy</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>42.05</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Loath</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>87035.04</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Love</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>10779.98</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>NSDP_per_capita</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>4602.38</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Population_Density</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.55</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Sex_Ratio</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>2322.93</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Total_Murders</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>413365.94</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Unemployment</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>11.81</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Urbanization</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.02</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="ThetaStart" role="tabpanel" aria-labelledby="ThetaStart-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>Alcohol</th>
+      <th>Below_poverty_line</th>
+      <th>Greed</th>
+      <th>Homeless_prop</th>
+      <th>Literacy</th>
+      <th>Loath</th>
+      <th>Love</th>
+      <th>NSDP_per_capita</th>
+      <th>Population_Density</th>
+      <th>Sex_Ratio</th>
+      <th>Total_Murders</th>
+      <th>Unemployment</th>
+      <th>Urbanization</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alcohol</th>
+      <td>34.03</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Below_poverty_line</th>
+      <td>0.00</td>
+      <td>7325.81</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Greed</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>94113.48</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Homeless_prop</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.30</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Literacy</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>21.01</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Loath</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>87049.94</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Love</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>10859.16</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>NSDP_per_capita</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>4512.03</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Population_Density</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>3.93</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Sex_Ratio</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1581.34</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Total_Murders</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>413362.59</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Unemployment</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>6.38</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Urbanization</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.02</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table></div><div class="tab-pane fade " id="ThetaNames" role="tabpanel" aria-labelledby="ThetaNames-tab"><table border="1" class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: center;">
+      <th></th>
+      <th>Alcohol</th>
+      <th>Below_poverty_line</th>
+      <th>Greed</th>
+      <th>Homeless_prop</th>
+      <th>Literacy</th>
+      <th>Loath</th>
+      <th>Love</th>
+      <th>NSDP_per_capita</th>
+      <th>Population_Density</th>
+      <th>Sex_Ratio</th>
+      <th>Total_Murders</th>
+      <th>Unemployment</th>
+      <th>Urbanization</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alcohol</th>
+      <td>_c2</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Below_poverty_line</th>
+      <td>0.00</td>
+      <td>_c3</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Greed</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c4</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Homeless_prop</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c5</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Literacy</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c6</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Loath</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c7</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Love</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c8</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>NSDP_per_capita</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c9</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Population_Density</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c12</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Sex_Ratio</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c17</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Total_Murders</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c22</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Unemployment</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c23</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Urbanization</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>_c24</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table></div></div></div></div>
+    </div>
+   </div>
+  </div>
+</div>
+<footer class="footer">
+      <div class="container">
+	<br>
+	<center>
+        <span class="text-muted">Generated by <a href="https://semopy.com"><b>semopy</b></a> v. 2.3.11.</span>
+	</center>
+      </div>
+    </footer>
+</body>
+<script>
+const menus = [document.getElementById("model_m"), document.getElementById("estimates_m"), document.getElementById("indices_m"), document.getElementById("matrices_m")];
+const headers = [document.getElementById("model"), document.getElementById("estimates"), document.getElementById("indices"), document.getElementById("matrices")];
+var cur = menus[0];
+cur.classList.add('active');
+window.addEventListener("scroll", function() {
+  headers.forEach(function(item, index, array) {
+    if (window.scrollY >= (item.offsetTop - 1.05 * item.offsetHeight)) {
+        item = menus[index];
+        cur.classList.remove("active");
+        cur = item;
+        cur.classList.add("active");
+  }
+});
+});
+</script>
+
+</html>
