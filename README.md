@@ -78,6 +78,17 @@ Heatmap of p-values to identify statistically significant correlations.
 Linear regression models to predict murder rates based on socio-economic factors.
 Multivariate regression to assess the combined effect of multiple factors on murder motives.
 
+#### Further Modeling:
+
+Used various models like ElasticNet Regression, Random Forest Regression, Gradient Boosting and SVR to model the data.
+Used cross validation methods and grid search for getting the values of the hyper parameters.
+Compared those model on various metrics like RMSE, RMAE, R<sup>2</sup> to get the best model.
+
+#### Structural Equation Modeling:
+
+Structural Equation Modeling was used to structure the complex behavior and the dependence of the various factors on the different motives of murder. A report is also generated which can be found on the code file.
+
+
 ### Challenges and Blockers
 
 - #### Data Quality and Availability:
