@@ -5,6 +5,9 @@ This is the project for my bachelors final year dissertation. This project provi
 
 
 
+![alt text](https://github.com/haverstein/Murder-Analysis-India/blob/main/Visualizations/murder_front_page.jpg)
+
+
 ## Acknowledgements
 
  - [Paper on Murder Motives](https://www.crimeandjustice.org.uk/sites/crimeandjustice.org.uk/files/09627250608553401.pdf)
